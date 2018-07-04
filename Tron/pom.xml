@@ -6,7 +6,6 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>lorann</name>
-  <description>Base project to start BoulderDash software</description>
   <build>
     <plugins>
       <plugin>
@@ -73,4 +72,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <description>Projet qui a pour but de recréer le jeu Tron en Java</description>
 </project>

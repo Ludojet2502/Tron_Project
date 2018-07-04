@@ -2,6 +2,11 @@ package controller;
 
 import javax.swing.*;
 import javax.swing.Timer;
+
+import model.*;
+import view.IInputListener;
+import view.IView;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +16,7 @@ import java.util.*;
 import java.util.List;
 
 
-public class Deplacement extends JPanel implements ActionListener, IDeplacement {
+public class Deplacement extends JPanel implements ActionListener, IDeplacement, IDirection {
 
 	public static int DELTA = 1;
     public static int SIZE = 1;
@@ -26,9 +31,18 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement 
     boolean firstTime = true;
     boolean gameOver = false;
 
-    private InputListener inputListener;
+    private IInputListener inputListener;
+    
+    /** The view. */
+    private final IView  view;
 
-    public Deplacement(InputListener inputListener) {
+    /** The model. */
+    private final IModel model;
+
+    public Deplacement(IInputListener inputListener, final IView view, final IModel model) {
+    	super();
+        this.view = view;
+        this.model = model;
         this.inputListener = inputListener;
     }
 
@@ -168,5 +182,31 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement 
             }
         }
         repaint();
+    }
+    /**
+     * Gets the view.
+     *
+     * @return the view
+     */
+    public IView getView() {
+        return this.view;
+    }
+
+    /**
+     * Gets the model.
+     *
+     * @return the model
+     */
+    public IModel getModel() {
+        return this.model;
+    }
+    
+    /**
+     * Gets the InputListener.
+     *
+     * @return the model
+     */
+    public IInputListener getInputListener() {
+        return this.inputListener;
     }
 }

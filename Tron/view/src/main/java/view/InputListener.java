@@ -10,14 +10,14 @@ public abstract class InputListener extends KeyAdapter implements IInputListener
 	Moto player1;
 	Moto player2;
 
-    Draw draw;
+    Deplacement deplacement;
 
     boolean debut = false;
 
-    public void debut(Moto player1, Moto player2, Draw draw) {
+    public void debut(Moto player1, Moto player2, Deplacement deplacement) {
         this.player1 = player1;
         this.player2 = player2;
-        this.draw = draw;
+        this.deplacement = deplacement;
         debut = true;
     }
     
