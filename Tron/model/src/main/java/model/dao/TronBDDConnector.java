@@ -12,19 +12,19 @@ import java.sql.Statement;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-final class LorannBDDConnector {
+final class TronBDDConnector {
 
     /** The instance. */
-    private static LorannBDDConnector instance;
+    private static TronBDDConnector instance;
 
     /** The login. */
     private static String                  user     = "root";
 
     /** The password. */
-    private static String                  password = "";
+    private static String                  password = "root";
 
     /** The url. */
-    private static String                  url      = "jdbc:mysql://localhost/lorann?useSSL=false&serverTimezone=UTC";
+    private static String                  url      = "jdbc:mysql://localhost/Tron?useSSL=false&serverTimezone=UTC";
 
     /** The connection. */
     private Connection                     connection;
@@ -35,7 +35,7 @@ final class LorannBDDConnector {
     /**
      * Instantiates a new boulder dash BDD connector.
      */
-    private LorannBDDConnector() {
+    private TronBDDConnector() {
         this.open();
     }
 
@@ -44,9 +44,9 @@ final class LorannBDDConnector {
      *
      * @return single instance of BoulderDashBDDConnector
      */
-    public static LorannBDDConnector getInstance() {
+    public static TronBDDConnector getInstance() {
         if (instance == null) {
-            setInstance(new LorannBDDConnector());
+            setInstance(new TronBDDConnector());
         }
         return instance;
     }
@@ -57,8 +57,8 @@ final class LorannBDDConnector {
      * @param instance
      *            the new instance
      */
-    private static void setInstance(final LorannBDDConnector instance) {
-        LorannBDDConnector.instance = instance;
+    private static void setInstance(final TronBDDConnector instance) {
+    	TronBDDConnector.instance = instance;
     }
 
     /**
@@ -68,8 +68,8 @@ final class LorannBDDConnector {
      */
     private boolean open() {
         try {
-            this.connection = DriverManager.getConnection(LorannBDDConnector.url, LorannBDDConnector.user,
-                    LorannBDDConnector.password);
+            this.connection = DriverManager.getConnection(TronBDDConnector.url, TronBDDConnector.user,
+            		TronBDDConnector.password);
             this.statement = this.connection.createStatement();
             return true;
         } catch (final SQLException exception) {
