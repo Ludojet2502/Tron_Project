@@ -2,7 +2,8 @@ package main;
 
 import java.sql.SQLException;
 
-import controller.Deplacement;
+import controller.ControllerFacade;
+import controller.Game;
 import model.*;
 import view.*;
 
@@ -21,9 +22,14 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        //final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
-
-        Fenetre.create();
+        final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+        
+        try {
+			controller.start();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }

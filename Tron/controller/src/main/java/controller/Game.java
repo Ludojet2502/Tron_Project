@@ -10,13 +10,18 @@ import view.IView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.*;
 import java.util.List;
 
-
-public class Deplacement extends JPanel implements ActionListener, IDeplacement, IDirection {
+/**
+ * 
+ * @author Ludovic PIERSON
+ *
+ */
+public class Game extends JPanel implements IGame {
 
 	public static int DELTA = 1;
     public static int SIZE = 1;
@@ -24,32 +29,37 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement,
 
     private Timer timer = new Timer(DELAY, this);
     
-    Moto player1 = new Moto(1, "Player1");
-    Moto player2 = new Moto(2, "Player2");
-    Moto loser;
+    private IMoto player1;
+    private IMoto player2;
+    private IMoto loser;
     
     boolean firstTime = true;
     boolean gameOver = false;
 
     private IInputListener inputListener;
     
-    /** The view. */
-    private final IView  view;
+   
+    /**
+     * The constructor of the class
+     * @param player1
+     * @param player2
+     */
 
-    /** The model. */
-    private final IModel model;
-
-    public Deplacement(IInputListener inputListener, final IView view, final IModel model) {
+    public Game(IMoto player1, IMoto player2) {
     	super();
-        this.view = view;
-        this.model = model;
-        this.inputListener = inputListener;
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     List<Point> points = new ArrayList<Point>();        // Point générale
     List<Point> onePoints = new ArrayList<Point>();     // Point pour le joueur 1
     List<Point> twoPoints = new ArrayList<Point>();     // poibt pour le joueur 2
     
+    /**
+     * 
+     * This method permit to draw the wall behind players
+     * @param g
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
@@ -68,16 +78,22 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement,
         }
 
         if(gameOver) {
-            //TODO Bryson run explode code using the 'loser Biker'
+           
             if(loser == null) {
-                //TODO Explode both players
+               
+            	System.out.println("Explode " + loser.getName());
             } else {
-                System.out.println("Explode " + loser.name);
+                System.out.println("Explode " + loser.getName());
             }
-            timer.stop(); //TODO Remove stop()
+            timer.stop(); 
         }
     }
     
+    /**
+     * 
+     * This method permit to describ how the reset work.
+     * 
+     */
     public void reset() {
         timer.stop();
 
@@ -100,20 +116,35 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement,
 
         timer.start();
 
-        inputListener.ready(player1, player2, this);
+        inputListener.debut(player1, player2, this);
     }
     
+    /**
+     * 
+     * this Method permit to describ the first part of the end 
+     */
     public void endGame() {
         timer.stop();
 
         gameOver = true;
     }
 
-    public void endGame(Moto loser) {
+    /**
+     * 
+     * this method permit to describ what the program do when the players lose. 
+     * 
+     * @param loser
+     */
+    public void endGame(IMoto loser) {
         this.loser = loser;
         gameOver = true;
     }
 
+    /**
+     * 
+     * This method permit to the put in pause the game
+     * 
+     */
     public void pause() {
         if(!gameOver) {
             if(timer.isRunning()) {
@@ -124,6 +155,12 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement,
         }
     }
     
+    /**
+     * 
+     * this method permit to manage all the move
+     * 
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         if(!gameOver) {
             switch(player1.getDirection()){
@@ -183,30 +220,24 @@ public class Deplacement extends JPanel implements ActionListener, IDeplacement,
         }
         repaint();
     }
-    /**
-     * Gets the view.
-     *
-     * @return the view
-     */
-    public IView getView() {
-        return this.view;
-    }
-
-    /**
-     * Gets the model.
-     *
-     * @return the model
-     */
-    public IModel getModel() {
-        return this.model;
-    }
     
     /**
-     * Gets the InputListener.
-     *
-     * @return the model
+     * Get the InputListener
+     * 
+     * @return inputListener
      */
     public IInputListener getInputListener() {
         return this.inputListener;
     }
+    
+    /**
+     * Set the InputListener
+     * 
+     * @param inputListener
+     */
+    public void setInputListener(IInputListener inputListener) {
+    	this.inputListener = inputListener;
+    }
+
+	
 }

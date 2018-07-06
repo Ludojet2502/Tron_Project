@@ -1,6 +1,6 @@
 package model;
 
-public enum Direction implements IDirection {
+public enum Direction {
 	HAUT,
 	BAS,
 	DROITE,

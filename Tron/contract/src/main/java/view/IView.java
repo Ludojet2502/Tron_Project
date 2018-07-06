@@ -1,5 +1,7 @@
 package view;
 
+import controller.IGame;
+
 /**
  * <h1>The Interface IView.</h1>
  *
@@ -15,4 +17,11 @@ public interface IView {
      *            the message
      */
     void displayMessage(String message);
+
+    /**
+     * Create Window 
+     * 
+     * @param g
+     */
+	void createWindow(IGame g);
 }

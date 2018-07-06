@@ -53,6 +53,11 @@ public class ControllerFacade implements IController {
             message.append('\n');
         }
         this.getView().displayMessage(message.toString());
+        
+        
+        IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
+        this.getView().createWindow(g);
+        
     }
 
     /**

@@ -3,55 +3,64 @@ package view;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import model.Direction;
 import model.IMoto;
+import view.*;
+import controller.*;
 
-public abstract class InputListener extends KeyAdapter implements IInputListener, IMoto{
+/**
+ * 
+ * @author Ludovic PIERSON
+ *
+ */
+public class InputListener extends KeyAdapter implements IInputListener{
 	
-	Moto player1;
-	Moto player2;
+	IMoto player1;
+	IMoto player2;
 
-    Deplacement deplacement;
+    IGame game;
 
     boolean debut = false;
 
-    public void debut(Moto player1, Moto player2, Deplacement deplacement) {
+    public void debut(IMoto player1, IMoto player2, IGame game) {
         this.player1 = player1;
         this.player2 = player2;
-        this.deplacement = deplacement;
+        this.game = game;
         debut = true;
     }
     
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
-        Moto.Direction direction1 = player1.getDirection();
-        Moto.Direction direction2 = player2.getDirection();
+        Direction direction1 = player1.getDirection();
+        Direction direction2 = player2.getDirection();
         if (debut) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
-                    if(direction1 != Moto.Direction.BAS) player1.setDirection(Moto.Direction.HAUT);
+                    if(direction1 != Direction.BAS) player1.setDirection(Direction.HAUT);
                     break;
                 case KeyEvent.VK_A:
-                    if(direction1 != Moto.Direction.DROITE) player1.setDirection(Moto.Direction.GAUCHE);
+                    if(direction1 != Direction.DROITE) player1.setDirection(Direction.GAUCHE);
                     break;
                 case KeyEvent.VK_S:
-                    if(direction1 != Moto.Direction.HAUT) player1.setDirection(Moto.Direction.BAS);
+                    if(direction1 != Direction.HAUT) player1.setDirection(Direction.BAS);
                     break;
                 case KeyEvent.VK_D:
-                    if(direction1 != Moto.Direction.GAUCHE) player1.setDirection(Moto.Direction.DROITE);
+                    if(direction1 != Direction.GAUCHE) player1.setDirection(Direction.DROITE);
                     break;
                 case KeyEvent.VK_UP:
-                    if(direction2 != Moto.Direction.BAS) player2.setDirection(Moto.Direction.HAUT);
+                    if(direction2 != Direction.BAS) player2.setDirection(Direction.HAUT);
                     break;
                 case KeyEvent.VK_LEFT:
-                    if(direction2 != Moto.Direction.DROITE) player2.setDirection(Moto.Direction.GAUCHE);
+                    if(direction2 != Direction.DROITE) player2.setDirection(Direction.GAUCHE);
                     break;
                 case KeyEvent.VK_DOWN:
-                    if(direction2 != Moto.Direction.HAUT) player2.setDirection(Moto.Direction.BAS);
+                    if(direction2 != Direction.HAUT) player2.setDirection(Direction.BAS);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    if(direction2 != Moto.Direction.GAUCHE) player2.setDirection(Moto.Direction.DROITE);
+                    if(direction2 != Direction.GAUCHE) player2.setDirection(Direction.DROITE);
               
             }
         }
     
+    }
 }

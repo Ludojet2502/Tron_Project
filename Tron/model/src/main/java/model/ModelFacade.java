@@ -46,5 +46,14 @@ public final class ModelFacade implements IModel {
     public List<Example> getAllExamples() throws SQLException {
         return ExampleDAO.getAllExamples();
     }
+    
+    /**
+     * This method permit to create a new moto
+     * 
+     * @param joueur, nom
+     */
+    public IMoto createMoto(int joueur, String nom) {
+    	return new Moto( joueur, nom);
+    }
 
 }

@@ -2,10 +2,11 @@ package view;
 
 import java.awt.event.KeyEvent;
 import model.IMoto;
+import controller.IGame;;
 
 public interface IInputListener {
 	
-	void debut(Moto player1, Moto player2, Draw draw);
+	void debut(IMoto player1, IMoto player2, IGame game);
 	
 	void keyPressed(KeyEvent e);
 }

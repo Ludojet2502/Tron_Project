@@ -1,11 +1,11 @@
 package model;
 
-import model.IDirection;
+
 
 public interface IMoto {
 	
 	
-	void Moto(int joueur, String nom);
+	//void Moto(int joueur, String nom);
 	
 	void reset();
 	
@@ -17,5 +17,9 @@ public interface IMoto {
 	
 	void setY(int y);
 	
+	Direction getDirection();
 	
+	void setDirection(Direction direction);
+	
+	String getName();
 }

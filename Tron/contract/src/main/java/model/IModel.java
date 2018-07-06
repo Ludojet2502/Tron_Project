@@ -41,4 +41,7 @@ public interface IModel {
      *             the SQL exception
      */
     List<Example> getAllExamples() throws SQLException;
+    
+    
+    IMoto createMoto(int joueur, String nom);
 }
