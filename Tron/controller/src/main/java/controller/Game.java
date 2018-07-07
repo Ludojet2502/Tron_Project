@@ -61,7 +61,11 @@ public class Game extends JPanel implements IGame {
      * @param g
      */
     public void paintComponent(Graphics g){
+    	
         super.paintComponent(g);
+        
+        Date dStart = new Date();
+        
         Graphics2D g2d = (Graphics2D) g;
         if (firstTime){
             reset();
@@ -86,6 +90,8 @@ public class Game extends JPanel implements IGame {
                 System.out.println("Explode " + loser.getName());
             }
             timer.stop(); 
+            Date dStop = new Date();
+            System.out.println("Temps : "+ (dStop.getTime()- dStart.getTime()+ " s"));
         }
     }
     
