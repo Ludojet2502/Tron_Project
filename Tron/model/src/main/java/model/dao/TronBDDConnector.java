@@ -24,7 +24,7 @@ final class TronBDDConnector {
     private static String                  password = "root";
 
     /** The url. */
-    private static String                  url      = "jdbc:mysql://localhost/Tron?useSSL=false&serverTimezone=UTC";
+    private static String                  url      = "jdbc:mysql://localhost/tron?useSSL=false&serverTimezone=UTC";
 
     /** The connection. */
     private Connection                     connection;
