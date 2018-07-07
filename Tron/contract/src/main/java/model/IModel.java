@@ -42,6 +42,12 @@ public interface IModel {
      */
     List<Example> getAllExamples() throws SQLException;
     
-    
+    /**
+     * Create the both "LightCycle"
+     * 
+     * @param joueur
+     * @param nom
+     * @return two lightCycle
+     */
     IMoto createMoto(int joueur, String nom);
 }
