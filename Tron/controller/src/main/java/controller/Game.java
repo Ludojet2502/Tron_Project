@@ -110,10 +110,12 @@ public class Game extends JPanel implements IGame {
             Date dStop = new Date(); 
             int tempsFinale = (int) (dStop.getTime()- dStart.getTime()) ;
             System.out.println("Temps : "+ (tempsFinale+ " s"));
+            
+            // Afficher les scores .....
             Scores.main(null);
             
             
-            // Afficher les scores .....
+            
             
         }
     }

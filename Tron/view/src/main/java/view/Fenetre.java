@@ -21,10 +21,12 @@ public class Fenetre implements IFenetre{
 		JPanel p = (JPanel)g;
         JFrame f = new JFrame("Tron");
         InputListener inputListener = new InputListener();
+        
         g.setInputListener(inputListener);
         p.setBackground(Color.BLACK);
         f.setSize(600, 400);
         f.add(p);
+        
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.addKeyListener(inputListener);
