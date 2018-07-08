@@ -1,5 +1,6 @@
 package model;
 
+import controller.IGame;
 /**
  * <h1>The Class Example.</h1>
  *
@@ -13,6 +14,9 @@ public class Example {
 
     /** The name. */
     private String    name;
+    
+    /** The name of the winner */
+    private String vainqueur;
 
     /**
      * Instantiates a new example.
@@ -21,11 +25,19 @@ public class Example {
      *            the id
      * @param name
      *            the name
+     * @param vainqueur
+     * 			  the winner           
+     * 
      */
     public Example(final int id, final String name) {
         super();
         this.id = id;
         this.name = name;
+        
+    }
+    
+    public String setName() {
+    	return this.vainqueur;
     }
 
     /**
