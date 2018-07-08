@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -44,7 +44,10 @@ public class Game extends JPanel implements IGame {
     private IInputListener inputListener;
     
     
+    public int tempsFinale;
+    public String vainqueur;
     
+    JOptionPane jop1;
    
     /**
      * The constructor of the class
@@ -104,15 +107,19 @@ public class Game extends JPanel implements IGame {
                
             	System.out.println("Explode " + winner.getName());
             } else {
+            	vainqueur = winner.getName();
                 System.out.println("Explode " + winner.getName());
             }
             timer.stop(); 
             Date dStop = new Date(); 
-            int tempsFinale = (int) (dStop.getTime()- dStart.getTime()) ;
+            tempsFinale = (int) (dStop.getTime()- dStart.getTime()) ;
             System.out.println("Temps : "+ (tempsFinale+ " s"));
             
+            jop1 = new JOptionPane();
+            jop1.showMessageDialog(null, "le joueur " + vainqueur+ " a gagné en "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
+            
             // Afficher les scores .....
-            Scores.main(null);
+            //Scores.main(null);
             
             
             
@@ -222,7 +229,7 @@ public class Game extends JPanel implements IGame {
                     player2.setX(player2.getX() - DELTA);
                     break;
             }
-            //Afficher dans une fenetre Pop UP
+      
             Point oneP = new Point(player1.getX(), player1.getY());
             Point twoP = new Point(player2.getX(), player2.getY());
 
