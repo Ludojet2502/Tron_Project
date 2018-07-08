@@ -1,20 +1,25 @@
 package controller;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import model.*;
+import model.IMoto;
 import view.IInputListener;
-import view.IView;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.util.*;
-import java.util.List;
 
 /**
  * 
@@ -31,7 +36,7 @@ public class Game extends JPanel implements IGame {
     
     private IMoto player1;
     private IMoto player2;
-    private IMoto loser;
+    private IMoto winner;
     
     boolean firstTime = true;
     boolean gameOver = false;
@@ -69,6 +74,16 @@ public class Game extends JPanel implements IGame {
         Date dStart = new Date();
         
         Graphics2D g2d = (Graphics2D) g;
+        
+        
+        try {
+			Image image = ImageIO.read(new File("resources/Map_de_base2.jpg"));
+			g2d.drawImage(image, SIZE, SIZE, this);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+        
         if (firstTime){
             reset();
             firstTime = false;
@@ -85,15 +100,21 @@ public class Game extends JPanel implements IGame {
 
         if(gameOver) {
            
-            if(loser == null) {
+            if(winner == null) {
                
-            	System.out.println("Explode " + loser.getName());
+            	System.out.println("Explode " + winner.getName());
             } else {
-                System.out.println("Explode " + loser.getName());
+                System.out.println("Explode " + winner.getName());
             }
             timer.stop(); 
             Date dStop = new Date(); 
-            System.out.println("Temps : "+ (dStop.getTime()- dStart.getTime()+ " s"));
+            int tempsFinale = (int) (dStop.getTime()- dStart.getTime()) ;
+            System.out.println("Temps : "+ (tempsFinale+ " s"));
+            
+            
+            
+            // Afficher les scores .....
+            
         }
     }
     
@@ -120,7 +141,7 @@ public class Game extends JPanel implements IGame {
 
         player1.reset();
         player2.reset();
-        loser = null;
+        winner = null;
 
         timer.start();
 
@@ -143,8 +164,8 @@ public class Game extends JPanel implements IGame {
      * 
      * @param loser
      */
-    public void endGame(IMoto loser) {
-        this.loser = loser;
+    public void endGame(IMoto winner) {
+        this.winner = winner;
         gameOver = true;
     }
 

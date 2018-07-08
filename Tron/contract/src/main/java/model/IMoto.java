@@ -5,7 +5,7 @@ package model;
 public interface IMoto {
 	
 	
-	//void Moto(int joueur, String nom);
+	
 	
 	void reset();
 	
