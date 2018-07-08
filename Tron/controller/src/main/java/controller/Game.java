@@ -38,6 +38,8 @@ public class Game extends JPanel implements IGame {
 
     private IInputListener inputListener;
     
+    
+    
    
     /**
      * The constructor of the class
@@ -90,7 +92,7 @@ public class Game extends JPanel implements IGame {
                 System.out.println("Explode " + loser.getName());
             }
             timer.stop(); 
-            Date dStop = new Date();
+            Date dStop = new Date(); 
             System.out.println("Temps : "+ (dStop.getTime()- dStart.getTime()+ " s"));
         }
     }
