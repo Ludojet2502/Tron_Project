@@ -45,16 +45,16 @@ public class InputListener extends KeyAdapter implements IInputListener{
         Direction direction2 = player2.getDirection();
         if (debut) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_W:
+                case KeyEvent.VK_S:
                     if(direction1 != Direction.BAS) player1.setDirection(Direction.HAUT);
                     break;
-                case KeyEvent.VK_A:
+                case KeyEvent.VK_D:
                     if(direction1 != Direction.DROITE) player1.setDirection(Direction.GAUCHE);
                     break;
-                case KeyEvent.VK_S:
+                case KeyEvent.VK_Z:
                     if(direction1 != Direction.HAUT) player1.setDirection(Direction.BAS);
                     break;
-                case KeyEvent.VK_D:
+                case KeyEvent.VK_Q:
                     if(direction1 != Direction.GAUCHE) player1.setDirection(Direction.DROITE);
                     break;
                 case KeyEvent.VK_UP:

@@ -64,7 +64,7 @@ public class ControllerFacade implements IController {
     	System.out.println(vainqueur);
     	System.out.println(tempsFinal);
     	
-        this.getView().displayMessage(this.getModel().sendDataGame(Game.getVainqueur(), Game.getTempsFinal()));
+        this.getView().displayMessage(this.getModel().sendDataGame(game.getVainqueur(), game.getTempsFinal()));
     	
         IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
         this.getView().createWindow(g);
