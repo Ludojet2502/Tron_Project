@@ -6,6 +6,7 @@ import java.util.List;
 import model.Example;
 import model.IModel;
 import view.IView;
+import controller.Game;
 
 /**
  * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
@@ -20,6 +21,10 @@ public class ControllerFacade implements IController {
 
     /** The model. */
     private final IModel model;
+    
+    String vainqueur;
+    
+    int tempsFinal;
 
     /**
      * Instantiates a new controller facade.
@@ -42,19 +47,19 @@ public class ControllerFacade implements IController {
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
+        //this.getView().displayMessage(this.getModel().getExampleById(1).toString());
 
-        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
+        //this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
 
-        final List<Example> examples = this.getModel().getAllExamples();
+        /*final List<Example> examples = this.getModel().getAllExamples();
         final StringBuilder message = new StringBuilder();
         for (final Example example : examples) {
             message.append(example);
             message.append('\n');
         }
-        this.getView().displayMessage(message.toString());
+        this.getView().displayMessage(message.toString());*/
         
-        
+        //this.getView().displayMessage(this.getModel().sendDataGame(vainqueur, tempsFinal));
         IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
         this.getView().createWindow(g);
         

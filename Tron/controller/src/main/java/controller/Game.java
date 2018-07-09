@@ -80,7 +80,7 @@ public class Game extends JPanel implements IGame {
         
         
         try {
-			Image image = ImageIO.read(new File("resources/Map_de_base2.jpg"));
+			Image image = ImageIO.read(new File("/resources/Map_de_base2.jpg"));
 			g2d.drawImage(image, SIZE, SIZE, this);
 		} catch (IOException e) {
 			
