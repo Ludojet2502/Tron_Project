@@ -47,6 +47,8 @@ public class Game extends JPanel implements IGame {
     public int tempsFinale;
     public String vainqueur;
     
+    private ControllerFacade ctrl;
+    
     JOptionPane jop1;
    
     /**
@@ -78,14 +80,15 @@ public class Game extends JPanel implements IGame {
         
         Graphics2D g2d = (Graphics2D) g;
         
-        
+       /* 
         try {
-			Image image = ImageIO.read(new File("/resources/Map_de_base2.jpg"));
-			g2d.drawImage(image, SIZE, SIZE, this);
+        	//File file = new File("C:\\Users\\piers\\Desktop\\MAP.png");
+			//Image image = ImageIO.read(file);
+			//g2d.drawImage(image, 600, 400, this);
 		} catch (IOException e) {
 			
 			e.printStackTrace();
-		}
+		}*/
         
         if (firstTime){
             reset();
@@ -105,28 +108,41 @@ public class Game extends JPanel implements IGame {
            
             if(winner == null) {
                
-            	System.out.println("Explode " + winner.getName());
+            	System.out.println("Pas de vainqueur");
+            	jop1 = new JOptionPane();
+                jop1.showMessageDialog(null, "Pas de vainqueur mais la partie a durée  "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
+            	
             } else {
             	vainqueur = winner.getName();
-                System.out.println("Explode " + winner.getName());
+                System.out.println("Le vainqueur est " + winner.getName());
+               
             }
             timer.stop(); 
             Date dStop = new Date(); 
             tempsFinale = (int) (dStop.getTime()- dStart.getTime()) ;
             System.out.println("Temps : "+ (tempsFinale+ " s"));
-            
             jop1 = new JOptionPane();
             jop1.showMessageDialog(null, "le joueur " + vainqueur+ " a gagné en "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
-            
-            // Afficher les scores .....
-            //Scores.main(null);
-            
-            
-            
-            
+        
         }
     }
     
+    public String getVainqueur() {
+		return vainqueur;
+    	
+    }
+    
+    public void setVainqueur(String vainqueur) {
+    	this.vainqueur = vainqueur;
+    }
+    
+    public int getTempsFinal() {
+		return tempsFinale;
+    }
+    
+    public void setTempsFinale() {
+    	this.tempsFinale = tempsFinale;
+    }
     /**
      * 
      * This method permit to describ how the reset work.

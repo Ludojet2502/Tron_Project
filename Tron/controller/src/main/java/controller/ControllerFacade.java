@@ -22,9 +22,11 @@ public class ControllerFacade implements IController {
     /** The model. */
     private final IModel model;
     
-    String vainqueur;
+    private String vainqueur;
     
-    int tempsFinal;
+    private int tempsFinal;
+    
+    private Game game;
 
     /**
      * Instantiates a new controller facade.
@@ -59,7 +61,11 @@ public class ControllerFacade implements IController {
         }
         this.getView().displayMessage(message.toString());*/
         
-        //this.getView().displayMessage(this.getModel().sendDataGame(vainqueur, tempsFinal));
+    	System.out.println(vainqueur);
+    	System.out.println(tempsFinal);
+    	
+        this.getView().displayMessage(this.getModel().sendDataGame(Game.getVainqueur(), Game.getTempsFinal()));
+    	
         IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
         this.getView().createWindow(g);
         
