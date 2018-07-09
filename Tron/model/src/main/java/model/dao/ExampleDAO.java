@@ -24,15 +24,18 @@ public abstract class ExampleDAO extends AbstractDAO {
 
     /** The sql all examples. */
     private static String sqlAllExamples   = "{call findAllExamples()}";
+    
+    /** The sql insert information. */
+    private static String sqlInsertInformationByNameAndTime = "{call infoEndGame(1, ?, ?)}";
 
     /** The id column index. */
-    private static int    idColumnIndex    = 1;
+    private static int    NameColumnIndex    = 1;
 
     /** The name column index. */
-    private static int    nameColumnIndex  = 2;
+    private static int    TimeColumnIndex  = 2;
     
     
-
+    
     /**
      * Gets the example by id.
      *
@@ -41,11 +44,13 @@ public abstract class ExampleDAO extends AbstractDAO {
      * @return the example by id
      * @throws SQLException
      *             the SQL exception
-     */
+     *
+     *
     public static Example getExampleById(final int id) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleById);
         Example example = null;
         callStatement.setInt(1, id);
+        // peut etre enlever
         if (callStatement.execute()) {
             final ResultSet result = callStatement.getResultSet();
             if (result.first()) {
@@ -54,9 +59,16 @@ public abstract class ExampleDAO extends AbstractDAO {
             result.close();
         }
         return example;
+    }*/
+    
+    public static Example sendDataGame( String name, int time) throws SQLException {
+    	final CallableStatement callStatement = prepareCall(sqlInsertInformationByNameAndTime);
+    	Example example = null;
+    	callStatement.setInt(name, time);
+    	return example; 
     }
 
-    /**
+    /*
      * Gets the example by name.
      *
      * @param name
@@ -64,7 +76,7 @@ public abstract class ExampleDAO extends AbstractDAO {
      * @return the example by name
      * @throws SQLException
      *             the SQL exception
-     */
+     
     public static Example getExampleByName(final String name) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlExampleByName);
         Example example = null;
@@ -78,15 +90,16 @@ public abstract class ExampleDAO extends AbstractDAO {
             result.close();
         }
         return example;
-    }
+    }*/
 
+    /*
     /**
      * Gets the all examples.
      *
      * @return the all examples
      * @throws SQLException
      *             the SQL exception
-     */
+     *
     public static List<Example> getAllExamples() throws SQLException {
         final ArrayList<Example> examples = new ArrayList<Example>();
         final CallableStatement callStatement = prepareCall(sqlAllExamples);
@@ -99,5 +112,5 @@ public abstract class ExampleDAO extends AbstractDAO {
             result.close();
         }
         return examples;
-    }
+    }*/
 }
