@@ -12,10 +12,13 @@ import controller.IGame;
  */
 public class Fenetre implements IFenetre{
 	
+	public int height = 400;
+	public int width = 600;
+	
 	/**
 	 * the constructor can create the Window
 	 * 
-	 * @param g
+	 * @param g - Parametre for the new Panel
 	 */
 	public Fenetre(IGame g){
 		JPanel p = (JPanel)g;
@@ -24,11 +27,12 @@ public class Fenetre implements IFenetre{
         
         g.setInputListener(inputListener);
         p.setBackground(Color.BLACK);
-        f.setSize(600, 400);
+        f.setSize(width, height);
         f.add(p);
         
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.addKeyListener(inputListener);
+        
     }
 }

@@ -53,8 +53,8 @@ public class Game extends JPanel implements IGame {
    
     /**
      * The constructor of the class
-     * @param player1
-     * @param player2
+     * @param player1 - first player
+     * @param player2 - second player
      */
 
     public Game(IMoto player1, IMoto player2) {
@@ -70,7 +70,8 @@ public class Game extends JPanel implements IGame {
     /**
      * 
      * This method permit to draw the wall behind players
-     * @param g
+     * 
+     * @param g - the Graphics parametre
      */
     public void paintComponent(Graphics g){
     	
@@ -187,7 +188,7 @@ public class Game extends JPanel implements IGame {
      * 
      * this method permit to describ what the program do when the players lose. 
      * 
-     * @param loser
+     * @param winner - Winner of the game
      */
     public void endGame(IMoto winner) {
         this.winner = winner;
@@ -209,12 +210,7 @@ public class Game extends JPanel implements IGame {
         }
     }
     
-    /**
-     * 
-     * this method permit to manage all the move
-     * 
-     * @param e
-     */
+    
     public void actionPerformed(ActionEvent e) {
         if(!gameOver) {
             switch(player1.getDirection()){
@@ -278,7 +274,7 @@ public class Game extends JPanel implements IGame {
     /**
      * Get the InputListener
      * 
-     * @return inputListener
+     * @return inputListener 
      */
     public IInputListener getInputListener() {
         return this.inputListener;
@@ -287,7 +283,7 @@ public class Game extends JPanel implements IGame {
     /**
      * Set the InputListener
      * 
-     * @param inputListener
+     * @param inputListener - Permit to catch information from InputListener
      */
     public void setInputListener(IInputListener inputListener) {
     	this.inputListener = inputListener;

@@ -18,8 +18,8 @@ public class Moto implements IMoto{
 
     /**
      * The constructor of the Class
-     * @param joueur
-     * @param nom
+     * @param joueur - Id of the player
+     * @param nom - name of the player
      */
     public Moto(int joueur, String nom) {
         this.joueur = joueur;
@@ -44,7 +44,7 @@ public class Moto implements IMoto{
 
     /**
      * Set the X of the position 
-     * @param x
+     * @param x - X position of the LightCycle
      */
     public void setX(int x) {
         this.x = x;
@@ -59,7 +59,7 @@ public class Moto implements IMoto{
 
     /**
      * Set Y of the position
-     * @param y
+     * @param y - Y position of the LightCycle
      */
     public void setY(int y) {
         this.y = y;
@@ -75,7 +75,7 @@ public class Moto implements IMoto{
     /**
      * Set the position
      * 
-     * @param direction
+     * @param direction - Orientation ( Direction ) of the LightCycle
      */
     public void setDirection(Direction direction) {
         this.direction = direction;

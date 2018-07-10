@@ -25,8 +25,11 @@ public class Example {
      * Instantiates a new example.
      *
      *
-     * @param vainqueur
-     * 			  the winner           
+     * @param vainqueur - the winner
+     * 			  
+     * 
+     * @param Time - Duration of the Game
+     * 			  
      * 
      */
     public Example(final int Time, final String vainqueur) {
@@ -65,8 +68,8 @@ public class Example {
     /**
      * Sets the name.
      *
-     * @param name
-     *            the new name
+     * @param vainqueur - the new name
+     *           
      */
     public void setName(String vainqueur) {
         this.vainqueur = vainqueur;

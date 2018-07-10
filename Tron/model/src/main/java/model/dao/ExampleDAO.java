@@ -36,7 +36,7 @@ public abstract class ExampleDAO extends AbstractDAO {
     
     
     
-    /**
+    /*
      * Gets the example by id.
      *
      * @param id
@@ -61,6 +61,13 @@ public abstract class ExampleDAO extends AbstractDAO {
         return example;
     }*/
     
+    /**
+     * 
+     * @param name - Name of the player
+     * @param time - duration of the Game
+     * @return nothing because we send infos
+     * @throws SQLException - the SQL exception
+     */
     public static Example sendDataGame( String name, int time) throws SQLException {
     	final CallableStatement callStatement = prepareCall(sqlInsertInformationByNameAndTime);
     	Example example = null;

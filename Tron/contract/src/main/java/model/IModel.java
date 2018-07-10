@@ -47,8 +47,8 @@ public interface IModel {
     /**
      * Create the both "LightCycle"
      * 
-     * @param joueur
-     * @param nom
+     * @param joueur - Number of the player 1 or 2
+     * @param nom - name of the player
      * @return two lightCycle
      */
     IMoto createMoto(int joueur, String nom);

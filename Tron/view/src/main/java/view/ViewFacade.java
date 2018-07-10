@@ -31,7 +31,7 @@ public class ViewFacade implements IView {
     
     /**
      * this method call the constructor of Fenetre for create a new window
-     * @param g
+     * @param g - the Window
      */
     public void createWindow(IGame g) {
     	this.fenetre = new Fenetre(g);

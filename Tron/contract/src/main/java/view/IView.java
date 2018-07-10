@@ -21,7 +21,7 @@ public interface IView {
     /**
      * Create Window 
      * 
-     * @param g
+     * @param g - The window
      */
 	void createWindow(IGame g);
 }

@@ -37,7 +37,7 @@ public class InputListener extends KeyAdapter implements IInputListener{
     /**
      * Permit to define all the different key for play 
      * 
-     * @param e
+     * @param e - Permit to recup the key code of the KeyPressed
      */
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
