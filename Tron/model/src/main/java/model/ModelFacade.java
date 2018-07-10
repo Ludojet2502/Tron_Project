@@ -21,8 +21,8 @@ public final class ModelFacade implements IModel {
     }
 
     @Override
-    public Example sendDataGame( String name, int time) throws SQLException {
-    	return ExampleDAO.sendDataGame(name, time);
+    public void sendDataGame( String name, int time) throws SQLException {
+    	ExampleDAO.sendDataGame(name, time);
     }
     /*
      * (non-Javadoc)

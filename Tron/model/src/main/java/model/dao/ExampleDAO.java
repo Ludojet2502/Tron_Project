@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Example;
+import controller.IGame;
 
 /**
  * <h1>The Class ExampleDAO.</h1>
@@ -26,7 +27,7 @@ public abstract class ExampleDAO extends AbstractDAO {
     private static String sqlAllExamples   = "{call findAllExamples()}";
     
     /** The sql insert information. */
-    private static String sqlInsertInformationByNameAndTime = "{call infoEndGame(1, ?, ?)}";
+    private static String sqlInsertInformationByNameAndTime = "{call infoEndGame( ?, ?)}";
 
     /** The id column index. */
     private static int    NameColumnIndex    = 1;
@@ -34,7 +35,7 @@ public abstract class ExampleDAO extends AbstractDAO {
     /** The name column index. */
     private static int    TimeColumnIndex  = 2;
     
-    
+    static IGame game;
     
     /*
      * Gets the example by id.
@@ -68,11 +69,18 @@ public abstract class ExampleDAO extends AbstractDAO {
      * @return nothing because we send infos
      * @throws SQLException - the SQL exception
      */
-    public static Example sendDataGame( String name, int time) throws SQLException {
+    public static void sendDataGame( String name, int time) throws SQLException {
     	final CallableStatement callStatement = prepareCall(sqlInsertInformationByNameAndTime);
-    	Example example = null;
-    	callStatement.setInt(name, time);
-    	return example; 
+    	System.out.println("Requete Recuperer");
+    	
+    	callStatement.setString(1, name);
+    	System.out.println("name Recuperer");
+    	
+    	callStatement.setInt(2, time);
+    	System.out.println("time Recuperer");
+    	
+    	callStatement.execute();
+    	
     }
 
     /*

@@ -24,4 +24,6 @@ public interface IView {
      * @param g - The window
      */
 	void createWindow(IGame g);
+	
+	public void setInputListener(IGame g);
 }

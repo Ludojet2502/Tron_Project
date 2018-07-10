@@ -61,13 +61,51 @@ public class ControllerFacade implements IController {
         }
         this.getView().displayMessage(message.toString());*/
         
-    	System.out.println(vainqueur);
-    	System.out.println(tempsFinal);
     	
-        this.getView().displayMessage(this.getModel().sendDataGame(game.getVainqueur(), game.getTempsFinal()));
+    	
+        
     	
         IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
+        this.getView().setInputListener(g);
+        System.out.println("test reset");
+        g.reset();
+        
+        //g.endGame(g.getWinner());
+        
+         	
+        System.out.println("test avant create");
         this.getView().createWindow(g);
+        System.out.println("test apres create");
+        
+
+        long currentTime;
+        double dt;
+        double fps = 60.0;
+        long lastTime = -1;
+        
+                
+        while(!g.isGameOver()) {
+        	 currentTime = System.currentTimeMillis();
+             dt = (currentTime - lastTime)/1000.0;
+             
+             if (dt*fps >= 1.0) {
+                 lastTime = currentTime;
+                 System.out.println("Update While");
+             	g.update();
+             }
+        	
+        }
+        
+        
+        
+        String nom;
+    	if (g.getWinner() == null) {
+    		nom = "Pas de Vainqueur";
+    	}else {
+    		nom = g.getWinner().getName();
+    	}
+    	
+        this.getModel().sendDataGame(nom, g.getTempsFinale());
         
     }
 

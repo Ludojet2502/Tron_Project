@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IModel {
 
-	Example sendDataGame( String name, int time) throws SQLException;
+	void sendDataGame( String name, int time) throws SQLException;
 	
     /**
      * Gets the example by id.

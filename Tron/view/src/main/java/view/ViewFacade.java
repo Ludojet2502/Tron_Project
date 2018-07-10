@@ -36,5 +36,9 @@ public class ViewFacade implements IView {
     public void createWindow(IGame g) {
     	this.fenetre = new Fenetre(g);
     }
+    
+    public void setInputListener(IGame g) {
+    	g.setInputListener(new InputListener());
+    }
 
 }

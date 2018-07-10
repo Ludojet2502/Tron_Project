@@ -32,6 +32,7 @@ public class InputListener extends KeyAdapter implements IInputListener{
         this.player2 = player2;
         this.game = game;
         debut = true;
+        
     }
     
     /**

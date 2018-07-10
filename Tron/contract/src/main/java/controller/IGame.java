@@ -23,4 +23,16 @@ public interface IGame extends ActionListener{
 	public void actionPerformed(ActionEvent e);
 	
 	public void paintComponent(Graphics g);
+	
+	public IMoto getWinner();
+	
+	public void setVainqueur(IMoto winner);
+	
+	public int getTempsFinale();
+	
+	public void setTempsFinale(int tempsFinale);
+	
+	public void update();
+	
+	public boolean isGameOver();
 }

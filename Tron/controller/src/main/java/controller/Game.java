@@ -38,8 +38,8 @@ public class Game extends JPanel implements IGame {
     private IMoto player2;
     private IMoto winner;
     
-    boolean firstTime = true;
-    boolean gameOver = false;
+    private boolean firstTime = true;
+    private boolean gameOver = false;
 
     private IInputListener inputListener;
     
@@ -49,7 +49,9 @@ public class Game extends JPanel implements IGame {
     
     private ControllerFacade ctrl;
     
-    JOptionPane jop1;
+    boolean doneRecap = false;
+    
+    public Date dstart;
    
     /**
      * The constructor of the class
@@ -77,7 +79,6 @@ public class Game extends JPanel implements IGame {
     	
         super.paintComponent(g);
         
-        Date dStart = new Date();
         
         Graphics2D g2d = (Graphics2D) g;
         
@@ -91,10 +92,7 @@ public class Game extends JPanel implements IGame {
 			e.printStackTrace();
 		}*/
         
-        if (firstTime){
-            reset();
-            firstTime = false;
-        }
+        
         g2d.setColor(Color.GREEN);
         for(Point p : onePoints) {
             g2d.fill(new Rectangle2D.Double(p.getX(), p.getY(), SIZE, SIZE));
@@ -105,113 +103,18 @@ public class Game extends JPanel implements IGame {
             g2d.fill(new Rectangle2D.Double(p.getX(), p.getY(), SIZE, SIZE));
         }
 
-        if(gameOver) {
-           
-            if(winner == null) {
-               
-            	System.out.println("Pas de vainqueur");
-            	jop1 = new JOptionPane();
-                jop1.showMessageDialog(null, "Pas de vainqueur mais la partie a durée  "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
-            	
-            } else {
-            	vainqueur = winner.getName();
-                System.out.println("Le vainqueur est " + winner.getName());
-               
-            }
-            timer.stop(); 
-            Date dStop = new Date(); 
-            tempsFinale = (int) (dStop.getTime()- dStart.getTime()) ;
-            System.out.println("Temps : "+ (tempsFinale+ " s"));
-            jop1 = new JOptionPane();
-            jop1.showMessageDialog(null, "le joueur " + vainqueur+ " a gagné en "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void update(){
+    	    
         
+         
+        if (firstTime){
+            reset();
+            firstTime = false;
+            dstart = new Date();
         }
-    }
-    
-    public String getVainqueur() {
-		return vainqueur;
-    	
-    }
-    
-    public void setVainqueur(String vainqueur) {
-    	this.vainqueur = vainqueur;
-    }
-    
-    public int getTempsFinal() {
-		return tempsFinale;
-    }
-    
-    public void setTempsFinale() {
-    	this.tempsFinale = tempsFinale;
-    }
-    /**
-     * 
-     * This method permit to describ how the reset work.
-     * 
-     */
-    public void reset() {
-        timer.stop();
 
-        firstTime = true;
-        gameOver = false;
-
-        player1.setX(getWidth()*1/10 - SIZE + 1);
-        player1.setY(getHeight()*1/2);
-
-        player2.setX(getWidth()*9/10);
-        player2.setY(getHeight()* 1/2);
-
-        points.clear();
-        onePoints.clear();
-        twoPoints.clear();
-
-        player1.reset();
-        player2.reset();
-        winner = null;
-
-        timer.start();
-
-        inputListener.debut(player1, player2, this);
-    }
-    
-    /**
-     * 
-     * this Method permit to describ the first part of the end 
-     */
-    public void endGame() {
-        timer.stop();
-
-        gameOver = true;
-    }
-
-    /**
-     * 
-     * this method permit to describ what the program do when the players lose. 
-     * 
-     * @param winner - Winner of the game
-     */
-    public void endGame(IMoto winner) {
-        this.winner = winner;
-        gameOver = true;
-    }
-
-    /**
-     * 
-     * This method permit to the put in pause the game
-     * 
-     */
-    public void pause() {
-        if(!gameOver) {
-            if(timer.isRunning()) {
-                timer.stop();
-            } else {
-                timer.start();
-            }
-        }
-    }
-    
-    
-    public void actionPerformed(ActionEvent e) {
         if(!gameOver) {
             switch(player1.getDirection()){
                 case HAUT:
@@ -268,7 +171,123 @@ public class Game extends JPanel implements IGame {
                 twoPoints.add(twoP);
             }
         }
+        
+        if(gameOver && (doneRecap == false)) {
+        	doneRecap = true;
+        	
+        	timer.stop(); 
+            Date dStop = new Date(); 
+            tempsFinale = ((int) (dStop.getTime()- dstart.getTime()))/1000 ;
+            System.out.println("Temps : "+ (tempsFinale+ " s"));
+            
+            if(winner == null) {
+               
+            	System.out.println("Pas de vainqueur");
+            	JOptionPane.showMessageDialog(null, "Pas de vainqueur mais la partie a durée  "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
+            	
+            } else {
+            	
+                System.out.println("Le vainqueur est " + winner.getName());
+                JOptionPane.showMessageDialog(null, "le joueur " + winner.getName() + " a gagné en "+ tempsFinale +" s", "Recap' de la partie", JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+        }
         repaint();
+    }
+
+    public boolean isGameOver() {
+    	return gameOver;
+    }
+    
+    public IMoto getWinner() {
+		return winner;
+    	
+    }
+    
+    public void setVainqueur(IMoto winner) {
+    	this.winner = winner;
+    }
+    
+    public int getTempsFinale() {
+		return tempsFinale;
+    }
+    
+    public void setTempsFinale(int tempsFinale) {
+    	this.tempsFinale = tempsFinale;
+    }
+    /**
+     * 
+     * This method permit to describ how the reset work.
+     * 
+     */
+    public void reset() {
+        timer.stop();
+
+        firstTime = true;
+        gameOver = false;
+        doneRecap = false;
+
+        player1.setX(getWidth()*1/10 - SIZE + 1);
+        player1.setY(getHeight()*1/2);
+
+        player2.setX(getWidth()*9/10);
+        player2.setY(getHeight()* 1/2);
+
+        points.clear();
+        onePoints.clear();
+        twoPoints.clear();
+
+        player1.reset();
+        player2.reset();
+        winner = null;
+
+        timer.start();
+
+        
+        
+    }
+    
+    /**
+     * 
+     * this Method permit to describ the first part of the end 
+     */
+    public void endGame() {
+        timer.stop();
+
+        gameOver = true;
+    }
+
+    /**
+     * 
+     * this method permit to describ what the program do when the players winner. 
+     * 
+     * @param winner - Winner of the game
+     */
+    public void endGame(IMoto winner) {
+        this.winner = winner;
+        gameOver = true;
+    }
+
+    /**
+     * 
+     * This method permit to the put in pause the game
+     * 
+     */
+    public void pause() {
+        if(!gameOver) {
+            if(timer.isRunning()) {
+                timer.stop();
+            } else {
+                timer.start();
+            }
+        }
+    }
+    
+    
+    public void actionPerformed(ActionEvent e) {
+        
+        
     }
     
     /**
@@ -287,6 +306,10 @@ public class Game extends JPanel implements IGame {
      */
     public void setInputListener(IInputListener inputListener) {
     	this.inputListener = inputListener;
+    	inputListener.debut(
+        		player1, 
+        		player2, 
+        		this);
     }
 
 	
