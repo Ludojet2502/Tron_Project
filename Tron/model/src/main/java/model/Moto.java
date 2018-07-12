@@ -81,6 +81,11 @@ public class Moto implements IMoto{
         this.direction = direction;
     }
 
+    /**
+     * Get the name.
+     * 
+     * @return nom - the name
+     */
 	@Override
 	public String getName() {
 		return this.nom;

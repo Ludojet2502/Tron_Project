@@ -15,11 +15,16 @@ import controller.*;
  */
 public class InputListener extends KeyAdapter implements IInputListener{
 	
+	/** the player 1 */
 	IMoto player1;
+	
+	/** thz player 2 */
 	IMoto player2;
 
+	/** the game. */
     IGame game;
 
+    /** debut of the game. */
     boolean debut = false;
 
     /**

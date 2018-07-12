@@ -12,7 +12,9 @@ import controller.IGame;
  */
 public class ViewFacade implements IView {
 
+	/** the fenetre. */
 	private IFenetre fenetre;
+	
     /**
      * Instantiates a new view facade.
      */
@@ -37,6 +39,10 @@ public class ViewFacade implements IView {
     	this.fenetre = new Fenetre(g);
     }
     
+    /**
+     * This method permit to set the inputListener
+     * @param g - The 
+     */
     public void setInputListener(IGame g) {
     	g.setInputListener(new InputListener());
     }

@@ -58,7 +58,6 @@ public class Game extends JPanel implements IGame {
      * @param player1 - first player
      * @param player2 - second player
      */
-
     public Game(IMoto player1, IMoto player2) {
     	super();
         this.player1 = player1;
@@ -78,7 +77,6 @@ public class Game extends JPanel implements IGame {
     public void paintComponent(Graphics g){
     	
         super.paintComponent(g);
-        
         
         Graphics2D g2d = (Graphics2D) g;
         
@@ -105,10 +103,11 @@ public class Game extends JPanel implements IGame {
 
     }
     
+    /**
+     * this method permit to update the windows. thank to different loop.
+     */
     public void update(){
     	    
-        
-         
         if (firstTime){
             reset();
             firstTime = false;
@@ -196,30 +195,43 @@ public class Game extends JPanel implements IGame {
         repaint();
     }
 
+    /**  
+     * If "isGameOver" = true / "isGameOver" = false
+     */
     public boolean isGameOver() {
     	return gameOver;
     }
     
+    /**
+     * for get the name of the winner
+     */
     public IMoto getWinner() {
 		return winner;
-    	
     }
     
+    /**
+     * for set the name of the winner
+     */
     public void setVainqueur(IMoto winner) {
     	this.winner = winner;
     }
     
+    /**
+     * get the temps finale
+     */
     public int getTempsFinale() {
 		return tempsFinale;
     }
     
+    /**
+     * for set the temps finale
+     */
     public void setTempsFinale(int tempsFinale) {
     	this.tempsFinale = tempsFinale;
     }
+    
     /**
-     * 
      * This method permit to describ how the reset work.
-     * 
      */
     public void reset() {
         timer.stop();
@@ -243,13 +255,10 @@ public class Game extends JPanel implements IGame {
         winner = null;
 
         timer.start();
-
-        
-        
+ 
     }
     
     /**
-     * 
      * this Method permit to describ the first part of the end 
      */
     public void endGame() {
@@ -270,9 +279,7 @@ public class Game extends JPanel implements IGame {
     }
 
     /**
-     * 
      * This method permit to the put in pause the game
-     * 
      */
     public void pause() {
         if(!gameOver) {
@@ -286,8 +293,7 @@ public class Game extends JPanel implements IGame {
     
     
     public void actionPerformed(ActionEvent e) {
-        
-        
+
     }
     
     /**
@@ -306,11 +312,7 @@ public class Game extends JPanel implements IGame {
      */
     public void setInputListener(IInputListener inputListener) {
     	this.inputListener = inputListener;
-    	inputListener.debut(
-        		player1, 
-        		player2, 
-        		this);
+    	inputListener.debut(player1, player2, this);
     }
 
-	
 }

@@ -1,9 +1,6 @@
 package controller;
 
 import java.sql.SQLException;
-import java.util.List;
-
-import model.Example;
 import model.IModel;
 import view.IView;
 import controller.Game;
@@ -22,12 +19,6 @@ public class ControllerFacade implements IController {
     /** The model. */
     private final IModel model;
     
-    private String vainqueur;
-    
-    private int tempsFinal;
-    
-    private Game game;
-
     /**
      * Instantiates a new controller facade.
      *
@@ -49,54 +40,29 @@ public class ControllerFacade implements IController {
      *             the SQL exception
      */
     public void start() throws SQLException {
-        //this.getView().displayMessage(this.getModel().getExampleById(1).toString());
-
-        //this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
-
-        /*final List<Example> examples = this.getModel().getAllExamples();
-        final StringBuilder message = new StringBuilder();
-        for (final Example example : examples) {
-            message.append(example);
-            message.append('\n');
-        }
-        this.getView().displayMessage(message.toString());*/
         
-    	
-    	
-        
-    	
         IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
         this.getView().setInputListener(g);
-        System.out.println("test reset");
+       
         g.reset();
         
-        //g.endGame(g.getWinner());
-        
-         	
-        System.out.println("test avant create");
         this.getView().createWindow(g);
-        System.out.println("test apres create");
         
-
         long currentTime;
         double dt;
         double fps = 60.0;
         long lastTime = -1;
         
-                
         while(!g.isGameOver()) {
         	 currentTime = System.currentTimeMillis();
              dt = (currentTime - lastTime)/1000.0;
              
              if (dt*fps >= 1.0) {
                  lastTime = currentTime;
-                 System.out.println("Update While");
-             	g.update();
+             	 g.update();
              }
         	
         }
-        
-        
         
         String nom;
     	if (g.getWinner() == null) {
@@ -106,7 +72,7 @@ public class ControllerFacade implements IController {
     	}
     	
         this.getModel().sendDataGame(nom, g.getTempsFinale());
-        
+
     }
 
     /**

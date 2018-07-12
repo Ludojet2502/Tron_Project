@@ -12,9 +12,6 @@ public class Example {
     /** The id. */
     private int id;
 
-    /** The name. */
-    private String   name;
-    
     /** The name of the winner */
     private String 	 vainqueur;
     
@@ -24,13 +21,9 @@ public class Example {
     /**
      * Instantiates a new example.
      *
-     *
      * @param vainqueur - the winner
-     * 			  
-     * 
      * @param Time - Duration of the Game
-     * 			  
-     * 
+     *
      */
     public Example(final int Time, final String vainqueur) {
         super();
@@ -39,10 +32,11 @@ public class Example {
         
     }
     
-   
-    
-    
-    
+    /**
+     * set the duration of the Game
+     * 
+     * @return Time - the duration of the game
+     */
     public int setTime() {
     	return this.Time;
     }

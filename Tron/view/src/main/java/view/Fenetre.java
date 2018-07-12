@@ -11,8 +11,10 @@ import controller.IGame;
  *
  */
 public class Fenetre implements IFenetre{
-	
+	/** the height. */
 	public int height = 400;
+	
+	/** the width. */
 	public int width = 600;
 	
 	/**
