@@ -9,7 +9,7 @@ import view.*;
 import controller.*;
 
 /**
- * 
+ * <h1>The Class InputListener.</h1>
  * @author Ludovic PIERSON
  *
  */

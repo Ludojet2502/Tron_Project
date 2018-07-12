@@ -22,35 +22,53 @@ import model.IMoto;
 import view.IInputListener;
 
 /**
- * 
+ * <h1>The Class Game.</h1>
  * @author Ludovic PIERSON
  *
  */
 public class Game extends JPanel implements IGame {
 
+	/** the DELTA */
 	public static int DELTA = 1;
+	
+	/** The SIZE. */
     public static int SIZE = 1;
+    
+    /** the DELAY */
     public static int DELAY = 5;
 
+    /** The Timer */
     private Timer timer = new Timer(DELAY, this);
     
+    /** the moto 1 */
     private IMoto player1;
+    
+    /** the moto 2 */
     private IMoto player2;
+    
+    /** the winner */
     private IMoto winner;
     
+    /** the First Time */
     private boolean firstTime = true;
+    
+    /** the game over */
     private boolean gameOver = false;
 
+   
     private IInputListener inputListener;
     
-    
+    /** the TempsFinale */
     public int tempsFinale;
+    
+    /** the vainqueur */
     public String vainqueur;
     
-    private ControllerFacade ctrl;
     
+    /** attribut for the game */
     boolean doneRecap = false;
     
+    /** attriut for the time */
     public Date dstart;
    
     /**
@@ -79,17 +97,6 @@ public class Game extends JPanel implements IGame {
         super.paintComponent(g);
         
         Graphics2D g2d = (Graphics2D) g;
-        
-       /* 
-        try {
-        	//File file = new File("C:\\Users\\piers\\Desktop\\MAP.png");
-			//Image image = ImageIO.read(file);
-			//g2d.drawImage(image, 600, 400, this);
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}*/
-        
         
         g2d.setColor(Color.GREEN);
         for(Point p : onePoints) {
@@ -235,6 +242,7 @@ public class Game extends JPanel implements IGame {
      */
     public void reset() {
         timer.stop();
+        
 
         firstTime = true;
         gameOver = false;
@@ -255,7 +263,7 @@ public class Game extends JPanel implements IGame {
         winner = null;
 
         timer.start();
- 
+        
     }
     
     /**

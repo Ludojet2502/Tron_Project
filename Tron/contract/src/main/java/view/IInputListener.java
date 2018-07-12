@@ -4,6 +4,12 @@ import java.awt.event.KeyEvent;
 import model.IMoto;
 import controller.IGame;;
 
+/**
+ * <h1>The Interface IInputListener.</h1>
+ * 
+ * @author Ludovic PIERSON
+ *
+ */
 public interface IInputListener {
 	
 	/**

@@ -1,6 +1,9 @@
 package controller;
 
 import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
 import model.IModel;
 import view.IView;
 import controller.Game;
@@ -43,7 +46,13 @@ public class ControllerFacade implements IController {
         
         IGame g = new Game(this.getModel().createMoto(1, "Player1"), this.getModel().createMoto(2, "Player2"));
         this.getView().setInputListener(g);
-       
+        
+        
+        int option = JOptionPane.showConfirmDialog(null, "Voulez-vous lancer le jeu ?", "Launcher", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        if(option == JOptionPane.OK_OPTION){
+        JOptionPane.showMessageDialog(null, "Cette partie sera composé de deux joueurs\n le player 1 est le vert qui dispose des touches Z | Q | S | D \n Le player 2 qui sera rouge avec les flèches directionnelles\n", "La partie va démarrer !", JOptionPane.WARNING_MESSAGE);
+        
         g.reset();
         
         this.getView().createWindow(g);
@@ -73,7 +82,11 @@ public class ControllerFacade implements IController {
     	
         this.getModel().sendDataGame(nom, g.getTempsFinale());
 
+    }else {
+    	JOptionPane.showMessageDialog(null, "Très bien alors on jouera pas maintenant..", "Information", JOptionPane.INFORMATION_MESSAGE);
     }
+        
+ }
 
     /**
      * Gets the view.

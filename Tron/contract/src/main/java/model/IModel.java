@@ -14,9 +14,9 @@ public interface IModel {
 	/**
 	 * the method for send information of the game
 	 * 
-	 * @param name
-	 * @param time
-	 * @throws SQLException
+	 * @param name - the name of the winner
+	 * @param time - the duration of the game
+	 * @throws SQLException - the SQL Exception
 	 */
 	void sendDataGame( String name, int time) throws SQLException;
 	

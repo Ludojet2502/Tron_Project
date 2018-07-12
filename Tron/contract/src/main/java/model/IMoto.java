@@ -1,7 +1,12 @@
 package model;
 
 
-
+/**
+ * <h1>The Interface IMoto.</h1>
+ * 
+ * @author Ludovic PIERSON
+ *
+ */
 public interface IMoto {
 
 	/**

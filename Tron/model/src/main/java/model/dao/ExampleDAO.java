@@ -27,7 +27,6 @@ public abstract class ExampleDAO extends AbstractDAO {
      * 
      * @param name - Name of the player
      * @param time - duration of the Game
-     * @return nothing because we send infos
      * @throws SQLException - the SQL exception
      */
     public static void sendDataGame( String name, int time) throws SQLException {

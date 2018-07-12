@@ -25,7 +25,7 @@ public final class ModelFacade implements IModel {
      * 
      * @param name - the name of the player 
      * @param time - the duration of the game
-     * @throws SQLException
+     * @throws SQLException - the SQL Exception
      */
     @Override
     public void sendDataGame( String name, int time) throws SQLException {

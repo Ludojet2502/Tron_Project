@@ -2,18 +2,25 @@ package model;
 
 import model.*;
 /**
- * 
+ * <h1>The Class Moto.</h1>
  * @author Ludovic PIERSON
  *
  */
 public class Moto implements IMoto{
+	
+	/** The X */
 	private int x = 0;
+	
+	/** The Y */
     private int y = 0;
 
+    /** The Id of the player */
     private int joueur;
 
+    /** The name of the player */
     public String nom;
 
+    /** The direction */
     private Direction direction;
 
     /**
